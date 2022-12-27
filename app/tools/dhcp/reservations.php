@@ -29,7 +29,7 @@ function print_leases ($s) {
 
     // options
     $html[] = " <td>";
-    if(sizeof($s->{"options"})>0) {
+    if ($s->{"options"} !== null && sizeof($s->{"options"})>0) {
         foreach ($s->{"options"} as $k=>$v) {
             $html[] = $k.": ".$v."<br>";
         }
@@ -40,7 +40,7 @@ function print_leases ($s) {
 
     // classes
     $html[] = " <td>";
-    if(sizeof($s->{"classes"})>0) {
+    if ($s->{"options"} !== null && sizeof($s->{"classes"})>0) {
         foreach ($s->{"classes"} as $k=>$v) {
             $html[] = $v."<br>";
         }
@@ -94,7 +94,7 @@ $html[] = "<td class='th' colspan='8'>"._("IPv4 leases")."</td>";
 $html[] = "</tr>";
 
 // IPv4 not configured
-if ($leases4 === false) {
+if ($leases4 === null || $leases4 === false) {
     $html[] = "<tr>";
     $html[] = " <td colspan='8'>".$Result->show("info", _("IPv4 not configured on DHCP server"), false, false, true)."</td>";
     $html[] = "</tr>";
@@ -118,7 +118,7 @@ $html[] = "<td class='th' colspan='8'>"._("IPv6 leases")."</td>";
 $html[] = "</tr>";
 
 // IPv4 not configured
-if ($leases6 === false) {
+if ($leases6 === null || $leases6 === false) {
     $html[] = "<tr>";
     $html[] = " <td colspan='8'>".$Result->show("info", _("IPv6 not configured on DHCP server"), false, false, true)."</td>";
     $html[] = "</tr>";
