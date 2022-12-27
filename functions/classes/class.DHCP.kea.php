@@ -221,10 +221,10 @@ class DHCP_kea extends Common_functions {
             throw new exception ("Cannot access config file ".$this->kea_config_file);
         }
 
-        // loop and remove comments (contains #) and replace multilpe spaces
+        // loop and remove comments (contains # or //) and replace multiple spaces
         $out   = array();
         foreach ($config as $k=>$f) {
-            if (strpos($f, "#")!==false || strlen($f)==0) {}
+            if (strpos($f, "#")!==false || strpos($f, "//") !== false || strlen($f)==0) {}
             else {
                 if(strlen($f)>0) {
                     $out[] = $f;
